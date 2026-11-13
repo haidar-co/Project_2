@@ -6,7 +6,7 @@ import { Types } from "mongoose";
 
 
 @Injectable()
-export class parseObjectIdPipe implements PipeTransform{
+export class ParseObjectIdPipe implements PipeTransform{
     transform(value:string):Types.ObjectId{
         if(!Types.ObjectId.isValid(value)){
             throw new BadRequestException ('Invalid object');

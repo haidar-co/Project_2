@@ -20,8 +20,8 @@ export class ProductsService {
     return this.productModel.find().exec();
   }
 
-  findOne(id: Types.ObjectId) {
-    const product= this.productModel.findById(id).exec();
+  async findOne(id: Types.ObjectId) {
+    const product=await this.productModel.findById(id).exec();
     if(!product){
       throw new NotFoundException(`product with id ${id} not found`);
     }

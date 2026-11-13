@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ProductsService } from './products.service.js';
 import { CreateProductDto } from './dto/create-product.dto.js';
 import { UpdateProductDto } from './dto/update-product.dto.js';
-import { parseObjectIdPipe } from '../common/pipes/parse-object-id.pipe.js';
+import { ParseObjectIdPipe } from '../common/pipes/parse-object-id.pipe.js';
 import { Types } from 'mongoose';
 
 @Controller('products')
@@ -20,7 +20,7 @@ export class ProductsController {
   }
 
   @Get(':id')
-  findOne(@Param('id',parseObjectIdPipe) id: Types.ObjectId) {
+  findOne(@Param('id',ParseObjectIdPipe) id: Types.ObjectId) {
     return this.productsService.findOne(id);
   }
 

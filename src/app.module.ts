@@ -22,7 +22,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       }),
     }),
     
-    ProductsModule,
+    
    
   ],
   controllers: [AppController],

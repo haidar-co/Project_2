@@ -5,10 +5,13 @@ import { AppService } from './app.service.js';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 
+
+import { ProductsModule } from './products/products.module.js';
+
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
 @Module({
-  imports: [
+  imports: [ProductsModule,
     ConfigModule.forRoot({isGlobal:true}),
     MongooseModule.forRootAsync({
       inject:[ConfigService],
@@ -18,6 +21,8 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
         
       }),
     }),
+    
+    ProductsModule,
    
   ],
   controllers: [AppController],

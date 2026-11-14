@@ -28,8 +28,13 @@ export class ProductsService {
     return product;
   }
 
-  update(id: number, updateProductDto: UpdateProductDto) {
-    return `This action updates a #${id} product`;
+  async update(id: Types.ObjectId, updateProductDto: UpdateProductDto) {
+    const product=await this.productModel.findByIdAndUpdate(id,updateProductDto,{new:true,
+      runValidators:true}).exec();
+      if(!product){
+        throw new NotFoundException(`product with id ${id} not found`);
+      }
+      return product;
   }
 
   remove(id: number) {

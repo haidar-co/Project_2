@@ -37,7 +37,12 @@ export class ProductsService {
       return product;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} product`;
+   async remove(id: Types.ObjectId) {
+    const product=await this.productModel.findByIdAndDelete(id).exec();
+    if(!product){
+      throw new NotFoundException(`product with id ${id} not found`);
+    }
+    return product;
+    
   }
 }
